@@ -1,5 +1,6 @@
 package com.raisetech.restapi.demo.task7;
 
+import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.util.UriComponentsBuilder;
@@ -21,7 +22,7 @@ public class GreetingController {
     }
 
     @PostMapping("/names")
-    public ResponseEntity<Map<String, String>> create(@RequestBody CreateForm form) {
+    public ResponseEntity<Map<String, String>> create(@Valid @RequestBody CreateForm form) {
         URI url = UriComponentsBuilder.fromUriString("http://localhost:8080")
                 .path("/names/id")
                 .build()
@@ -30,7 +31,7 @@ public class GreetingController {
     }
 
     @PatchMapping("/names/{id}")
-    public ResponseEntity<Map<String, String>> update(@PathVariable("id") int id, @RequestBody UpdateForm form) {
+    public ResponseEntity<Map<String, String>> update(@PathVariable("id") int id, @Valid @RequestBody UpdateForm form) {
         return ResponseEntity.ok(Map.of("message", "name successfully updated"));
     }
 
