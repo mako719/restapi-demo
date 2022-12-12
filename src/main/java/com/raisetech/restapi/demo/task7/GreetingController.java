@@ -22,12 +22,13 @@ public class GreetingController {
     }
 
     @PostMapping("/names")
-    public ResponseEntity<Map<String, String>> create(@Valid @RequestBody CreateForm form) {
+    public ResponseEntity<Map<Integer, String>> create(@Valid @RequestBody CreateForm form) {
+        int id = (int) counter.incrementAndGet();
         URI url = UriComponentsBuilder.fromUriString("http://localhost:8080")
-                .path("/names/id")
+                .path("/names/" + id)
                 .build()
                 .toUri();
-        return ResponseEntity.created(url).body(Map.of("id", "name successfully created"));
+        return ResponseEntity.created(url).body(Map.of(id, "name successfully created"));
     }
 
     @PatchMapping("/names/{id}")
