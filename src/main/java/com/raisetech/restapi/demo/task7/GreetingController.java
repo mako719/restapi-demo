@@ -27,7 +27,7 @@ public class GreetingController {
                 .path("/names/id")
                 .build()
                 .toUri();
-        return ResponseEntity.created(url).body(Map.of("id:" + counter.incrementAndGet(), "name successfully created"));
+        return ResponseEntity.created(url).body(Map.of("id", "name successfully created"));
     }
 
     @PatchMapping("/names/{id}")
